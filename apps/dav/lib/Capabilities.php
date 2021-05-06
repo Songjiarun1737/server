@@ -23,20 +23,29 @@
  */
 namespace OCA\DAV;
 
+use OC\Files\ObjectStore\ObjectStoreStorage;
 use OCP\Capabilities\ICapability;
 use OCP\IConfig;
+use OCP\Files\IRootFolder;
+use OCP\Files\ObjectStore\IObjectStoreMultiPartUpload;
 
 class Capabilities implements ICapability {
+	private IRootFolder $rootFolder;
 	private IConfig $config;
 
-	public function __construct(IConfig $config) {
+	public function __construct(IRootFolder $rootFolder, IConfig $config) {
+		$this->rootFolder = $rootFolder;
 		$this->config = $config;
 	}
 
 	public function getCapabilities() {
-		$capabilities = [
+		/** @var ObjectStoreStorage $rootStorage */
+		$rootStorage = $this->rootFolder->get('')->getStorage();
+
+		return [
 			'dav' => [
 				'chunking' => '1.0',
+				's3-multipart' => $rootStorage->instanceOfStorage(ObjectStoreStorage::class) && $rootStorage->getObjectStore() instanceof IObjectStoreMultiPartUpload,
 			]
 		];
 		if ($this->config->getSystemValueBool('bulkupload.enabled', true)) {

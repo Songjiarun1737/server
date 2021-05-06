@@ -23,8 +23,13 @@
  */
 namespace OCA\DAV\Tests\unit;
 
+use OC\Files\ObjectStore\ObjectStoreStorage;
+use OC\Files\ObjectStore\S3;
 use OCA\DAV\Capabilities;
 use OCP\IConfig;
+use OCP\Files\Folder;
+use OCP\Files\IRootFolder;
+use OCP\Files\Storage\IStorage;
 use Test\TestCase;
 
 /**
@@ -38,9 +43,36 @@ class CapabilitiesTest extends TestCase {
 			->with('bulkupload.enabled', $this->isType('bool'))
 			->willReturn(false);
 		$capabilities = new Capabilities($config);
+
+		$storage = $this->createMock(IStorage::class);
+		$folder = $this->createMock(Folder::class);
+		$rootFolder = $this->createMock(IRootFolder::class);
+		$rootFolder->method('get')->willReturn($folder);
+		$folder->method('getStorage')->willReturn($storage);
+		$capabilities = new Capabilities($rootFolder);
 		$expected = [
 			'dav' => [
 				'chunking' => '1.0',
+				's3-multipart' => false,
+			],
+		];
+		$this->assertSame($expected, $capabilities->getCapabilities());
+	}
+
+	public function testGetCapabilitiesS3() {
+		$objectStore = $this->createMock(S3::class);
+		$storage = $this->createMock(ObjectStoreStorage::class);
+		$folder = $this->createMock(Folder::class);
+		$rootFolder = $this->createMock(IRootFolder::class);
+		$rootFolder->method('get')->willReturn($folder);
+		$folder->method('getStorage')->willReturn($storage);
+		$storage->method('instanceOfStorage')->willReturn(true);
+		$storage->method('getObjectStore')->willReturn($objectStore);
+		$capabilities = new Capabilities($rootFolder);
+		$expected = [
+			'dav' => [
+				'chunking' => '1.0',
+				's3-multipart' => true,
 			],
 		];
 		$this->assertSame($expected, $capabilities->getCapabilities());
@@ -56,6 +88,7 @@ class CapabilitiesTest extends TestCase {
 		$expected = [
 			'dav' => [
 				'chunking' => '1.0',
+				's3-multipart' => true,
 				'bulkupload' => '1.0',
 			],
 		];
