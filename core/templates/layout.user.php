@@ -19,9 +19,9 @@ $getUserAvatar = static function (int $size) use ($_): string {
 		<title>
 			<?php
 				p(!empty($_['pageTitle'])?$_['pageTitle'].' - ':'');
-p(!empty($_['application'])?$_['application'].' - ':'');
-p($theme->getTitle());
-?>
+				p(!empty($_['application'])?$_['application'].' - ':'');
+				p($theme->getTitle());
+			?>
 		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -57,6 +57,9 @@ p($theme->getTitle());
 		</div>
 
 		<header role="banner" id="header">
+			<h1 class="hidden-visually" id="pageHeadingLevel1">
+				<?php p(!empty($_['pageTitle'])?$_['pageTitle']:''); ?>
+			</h1>
 			<div class="header-left">
 				<a href="<?php print_unescaped($_['logoUrl'] ?: link_to('', 'index.php')); ?>"
 					id="nextcloud">
@@ -89,9 +92,6 @@ p($theme->getTitle());
 		</form>
 
 		<main id="content" class="app-<?php p($_['appid']) ?>">
-			<h1 class="hidden-visually">
-				<?php p($l->t('%s\'s homepage', [$theme->getName()])); ?>
-			</h1>
 			<?php print_unescaped($_['content']); ?>
 		</main>
 		<div id="profiler-toolbar"></div>

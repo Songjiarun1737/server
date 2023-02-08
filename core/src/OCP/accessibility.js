@@ -29,4 +29,15 @@ export default {
 	disableKeyboardShortcuts() {
 		return loadState('theming', 'shortcutsDisabled', false)
 	},
+	/**
+	 * Set a page title to h1 header
+	 *
+	 * @param {string} [pageTitle] page title from the history api
+	 */
+	setPageTitle(pageTitle) {
+		const heading = document.getElementById('pageHeadingLevel1')
+		if (heading) {
+			heading.textContent = pageTitle
+		}
+	},
 }
