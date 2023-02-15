@@ -6,6 +6,7 @@
  * @author Julius Härtl <jus@bitgrid.net>
  * @author Morris Jobke <hey@morrisjobke.de>
  * @author Roeland Jago Douma <roeland@famdouma.nl>
+ * @author Kate Döen <kate.doeen@nextcloud.com>
  *
  * @license AGPL-3.0
  *
@@ -30,6 +31,8 @@ use OCP\AppFramework\Http;
  * Class DataDisplayResponse
  *
  * @since 8.1.0
+ *
+ * @template S of Http::STATUS_*
  */
 class DataDisplayResponse extends Response {
 	/**
@@ -41,7 +44,7 @@ class DataDisplayResponse extends Response {
 
 	/**
 	 * @param string $data the data to display
-	 * @param int $statusCode the Http status code, defaults to 200
+	 * @param S $statusCode the Http status code, defaults to 200
 	 * @param array $headers additional key value based headers
 	 * @since 8.1.0
 	 */

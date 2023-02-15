@@ -5,6 +5,7 @@
  * @author Georg Ehrke <oc.list@georgehrke.com>
  * @author Morris Jobke <hey@morrisjobke.de>
  * @author Roeland Jago Douma <roeland@famdouma.nl>
+ * @author Kate Döen <kate.doeen@nextcloud.com>
  *
  * @license AGPL-3.0
  *
@@ -27,6 +28,8 @@ namespace OCP\AppFramework\Http;
  * Class DataDownloadResponse
  *
  * @since 8.0.0
+ *
+ * @template S of string
  */
 class DataDownloadResponse extends DownloadResponse {
 	/**
@@ -38,7 +41,7 @@ class DataDownloadResponse extends DownloadResponse {
 	 * Creates a response that prompts the user to download the text
 	 * @param string $data text to be downloaded
 	 * @param string $filename the name that the downloaded file should have
-	 * @param string $contentType the mimetype that the downloaded file should have
+	 * @param S $contentType the mimetype that the downloaded file should have
 	 * @since 8.0.0
 	 */
 	public function __construct($data, $filename, $contentType) {
