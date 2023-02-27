@@ -8,6 +8,7 @@ declare(strict_types=1);
  * @author Christoph Wurst <christoph@winzerhof-wurst.at>
  * @author Lukas Reschke <lukas@statuscode.ch>
  * @author Roeland Jago Douma <roeland@famdouma.nl>
+ * @author Kate Döen <kate.doeen@nextcloud.com>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -82,12 +83,17 @@ class OauthApiController extends Controller {
 	 * @PublicPage
 	 * @NoCSRFRequired
 	 *
-	 * @param string $grant_type
-	 * @param string $code
-	 * @param string $refresh_token
-	 * @param string $client_id
-	 * @param string $client_secret
-	 * @return JSONResponse
+	 * Get a token
+	 *
+	 * @param string $grant_type Token type that should be granted
+	 * @param string $code Code of the flow
+	 * @param string $refresh_token Refresh token
+	 * @param string $client_id Client ID
+	 * @param string $client_secret Client secret
+	 * @return JSONResponse<array{access_token: string, token_type: string, expires_in: int, refresh_token: string, user_id: string}, Http::STATUS_OK>|JSONResponse<array{error: string}, Http::STATUS_BAD_REQUEST>
+	 *
+	 * 200: Token returned
+	 * 400: Getting token is not possible
 	 */
 	public function getToken($grant_type, $code, $refresh_token, $client_id, $client_secret): JSONResponse {
 
