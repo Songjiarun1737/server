@@ -33,14 +33,15 @@ use Attribute;
  *
  * @since 27.0.0
  */
-#[Attribute(Attribute::TARGET_METHOD|Attribute::IS_REPEATABLE)]
+#[Attribute(Attribute::TARGET_METHOD | Attribute::IS_REPEATABLE)]
 class BruteForceProtection {
 	/**
 	 * @since 27.0.0
 	 */
 	public function __construct(
 		protected string $action
-	) {}
+	) {
+	}
 
 	/**
 	 * @since 27.0.0
