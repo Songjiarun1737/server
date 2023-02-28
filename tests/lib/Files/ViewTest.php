@@ -1295,7 +1295,7 @@ class ViewTest extends \Test\TestCase {
 
 
 	public function testNullAsRoot() {
-		$this->expectException(\InvalidArgumentException::class);
+		$this->expectException(\TypeError::class);
 
 		new View(null);
 	}
