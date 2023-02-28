@@ -1683,10 +1683,6 @@ class View {
 	 * @return string
 	 */
 	public function getETag($path) {
-		/**
-		 * @var Storage\Storage $storage
-		 * @var string $internalPath
-		 */
 		[$storage, $internalPath] = $this->resolvePath($path);
 		if ($storage) {
 			return $storage->getETag($internalPath);
