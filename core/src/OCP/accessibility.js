@@ -30,14 +30,14 @@ export default {
 		return loadState('theming', 'shortcutsDisabled', false)
 	},
 	/**
-	 * Set a page title to h1 header
+	 * Set the page heading
 	 *
-	 * @param {string} [pageTitle] page title from the history api
+	 * @param {string} [heading] page title from the history api
 	 */
-	setPageTitle(pageTitle) {
-		const heading = document.getElementById('pageHeadingLevel1')
-		if (heading) {
-			heading.textContent = pageTitle
+	setPageHeading(heading) {
+		const headingEl = document.getElementById('pageHeadingLevel1')
+		if (headingEl) {
+			headingEl.textContent = heading
 		}
 	},
 }
