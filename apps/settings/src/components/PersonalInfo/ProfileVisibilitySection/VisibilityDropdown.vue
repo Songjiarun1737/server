@@ -24,15 +24,14 @@
 	<div class="visibility-container"
 		:class="{ disabled }">
 		<label :for="inputId">
-			{{ t('settings', '{displayId}', { displayId }) }}
+			{{ displayId }}
 		</label>
-		<NcMultiselect :id="inputId"
-			class="visibility-container__multiselect"
+		<NcSelect :input-id="inputId"
+			class="visibility-container__select"
+			:clearable="false"
 			:options="visibilityOptions"
-			track-by="name"
-			label="label"
 			:value="visibilityObject"
-			@change="onVisibilityChange" />
+			@option:selected="onVisibilityChange" />
 	</div>
 </template>
 
@@ -41,7 +40,7 @@ import { showError } from '@nextcloud/dialogs'
 import { loadState } from '@nextcloud/initial-state'
 import { subscribe, unsubscribe } from '@nextcloud/event-bus'
 
-import NcMultiselect from '@nextcloud/vue/dist/Components/NcMultiselect'
+import NcSelect from '@nextcloud/vue/dist/Components/NcSelect.js'
 
 import { saveProfileParameterVisibility } from '../../../service/ProfileService.js'
 import { VISIBILITY_PROPERTY_ENUM } from '../../../constants/ProfileConstants.js'
@@ -53,7 +52,7 @@ export default {
 	name: 'VisibilityDropdown',
 
 	components: {
-		NcMultiselect,
+		NcSelect,
 	},
 
 	props: {
@@ -173,8 +172,8 @@ export default {
 		line-height: 50px;
 	}
 
-	&__multiselect {
-		width: 260px;
+	&__select {
+		width: 270px;
 		max-width: 40vw;
 	}
 }

@@ -205,7 +205,6 @@ OC.L10N.register(
     "Mail share ({label})" : "Споделено преку е-пошта ({label})",
     "Share link ({label})" : "Сподели линк ({label})",
     "Share link" : "Сподели линк",
-    "Copy public link to clipboard" : "Копирај јавен линк во клипборд",
     "Error, please enter proper password and/or expiration date" : "Грешка, внесете лозинка и/или рок на траење",
     "Error while creating the share" : "Грешка при креирање на споделување",
     "Search for share recipients" : "Пребарај за примачи на споделувањето",
@@ -216,6 +215,11 @@ OC.L10N.register(
     "Searching …" : "Пребарување ...",
     "No elements found." : "Нема пронајдено елементи.",
     "Search globally" : "Пребарај глобално",
+    "Guest" : "Гостин",
+    "Group" : "Група",
+    "Email" : "Е-пошта",
+    "Circle" : "Круг",
+    "Talk conversation" : "Talk раговор",
     "on {server}" : "на {server}",
     "Others with access" : "Други со пристап",
     "No other users with access found" : "Не се пројандени други корисници со простап",
@@ -262,9 +266,6 @@ OC.L10N.register(
     "One or more of your shares will expire tomorrow" : "Едно или повеќе од твојте споделувања ќе истечат утре",
     "Copy to clipboard" : "Копирај во клипборд",
     "Sorry, this link doesn’t seem to work anymore." : "Извенете, но овој линк повеќе не функционира.",
-    "Toggle grid view" : "Промена во мрежа",
-    "Share label saved" : "Ознаката е зачувана",
-    "Share password saved" : "Лозинката е зачувана",
-    "Share note saved" : "Забелешката е зачувана"
+    "Toggle grid view" : "Промена во мрежа"
 },
 "nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;");

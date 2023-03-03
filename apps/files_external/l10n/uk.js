@@ -10,7 +10,6 @@ OC.L10N.register(
     "Error configuring OAuth2" : "Помилка налаштування OAuth2",
     "Generate keys" : "Створити ключі",
     "Error generating key pair" : "Помилка створення ключової пари",
-    "All users. Type to select user or group." : "Всі користувачі. Введіть ім'я користувача або групи.",
     "(Group)" : "(група)",
     "Compatibility with Mac NFD encoding (slow)" : "Сумісність із кодуванням Mac NFD (повільно)",
     "Enable encryption" : "Увімкнути шифрування",
@@ -23,7 +22,7 @@ OC.L10N.register(
     "Disconnect" : "Від'єднати",
     "Admin defined" : "Визначено адміністратором",
     "Automatic status checking is disabled due to the large number of configured storages, click to check status" : "Автоматична перевірка статусу вимкнена через велику кількість налаштованих сховищ, натисніть, щоб перевірити статус",
-    "Are you sure you want to disconnect this external storage? It will make the storage unavailable in Nextcloud and will lead to a deletion of these files and folders on any sync client that is currently connected but will not delete any files and folders on the external storage itself." : "Ви впевнені, що бажаєте від’єднати цю зовнішню пам’ять? Це зробить сховище недоступним у Nextcloud і призведе до видалення цих файлів і папок на будь-якому клієнті синхронізації, який наразі підключено, але не видалить жодних файлів і папок на самому зовнішньому сховищі.",
+    "Are you sure you want to disconnect this external storage? It will make the storage unavailable in Nextcloud and will lead to a deletion of these files and folders on any sync client that is currently connected but will not delete any files and folders on the external storage itself." : "Ви впевнені, що бажаєте від’єднати цю зовнішню пам’ять? Це зробить сховище недоступним у Nextcloud і призведе до видалення цих файлів і папок на будь-якому клієнті синхронізації, який наразі підключено, але не вилучіть жодних файлів і папок на самому зовнішньому сховищі.",
     "Delete storage?" : "Вилучити сховище?",
     "Saved" : "Збережено",
     "Saving …" : "Збереження ..",
@@ -137,6 +136,7 @@ OC.L10N.register(
     "Add storage" : "Додати сховище",
     "Advanced settings" : "Розширені налаштування",
     "Allow users to mount external storage" : "Дозволити користувачам монтувати зовнішні сховища",
-    "Global credentials can be used to authenticate with multiple external storages that have the same credentials." : "Глобальні облікові дані можна використовувати для автентифікації з кількома зовнішніми сховищами, які мають однакові облікові дані."
+    "Global credentials can be used to authenticate with multiple external storages that have the same credentials." : "Глобальні облікові дані можна використовувати для автентифікації з кількома зовнішніми сховищами, які мають однакові облікові дані.",
+    "All users. Type to select user or group." : "Всі користувачі. Введіть ім'я користувача або групи."
 },
 "nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);");

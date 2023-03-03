@@ -49,6 +49,7 @@
 		<!-- pending actions -->
 		<NcActions v-if="!pending && (pendingPassword || pendingExpirationDate)"
 			class="sharing-entry__actions"
+			:aria-label="actionsTooltip"
 			menu-align="right"
 			:open.sync="open"
 			@close="onNewLinkShare">
@@ -116,6 +117,7 @@
 		<!-- actions -->
 		<NcActions v-else-if="!loading"
 			class="sharing-entry__actions"
+			:aria-label="actionsTooltip"
 			menu-align="right"
 			:open.sync="open"
 			@close="onMenuClose">
@@ -125,14 +127,12 @@
 					<NcActionInput ref="label"
 						:class="{ error: errors.label }"
 						:disabled="saving"
-						:aria-label="t('files_sharing', 'Share label')"
+						:label="t('files_sharing', 'Share label')"
 						:value="share.newLabel !== undefined ? share.newLabel : share.label"
 						icon="icon-edit"
 						maxlength="255"
 						@update:value="onLabelChange"
-						@submit="onLabelSubmit">
-						{{ t('files_sharing', 'Share label') }}
-					</NcActionInput>
+						@submit="onLabelSubmit" />
 
 					<SharePermissionsEditor :can-reshare="canReshare"
 						:share.sync="share"
@@ -321,6 +321,10 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+		index: {
+			type: Number,
+			default: null,
+		},
 	},
 
 	data() {
@@ -369,6 +373,9 @@ export default {
 				if (this.isEmailShareType) {
 					return this.share.shareWith
 				}
+			}
+			if (this.index > 1) {
+				return t('files_sharing', 'Share link ({index})', { index: this.index })
 			}
 			return t('files_sharing', 'Share link')
 		},
@@ -531,6 +538,15 @@ export default {
 		},
 
 		/**
+		 * Tooltip message for actions button
+		 *
+		 * @return {string}
+		 */
+		actionsTooltip() {
+			return t('files_sharing', 'Actions for "{title}"', { title: this.title })
+		},
+
+		/**
 		 * Tooltip message for copy button
 		 *
 		 * @return {string}
@@ -542,7 +558,7 @@ export default {
 				}
 				return t('files_sharing', 'Cannot copy, please copy the link manually')
 			}
-			return t('files_sharing', 'Copy public link to clipboard')
+			return t('files_sharing', 'Copy public link of "{title}" to clipboard', { title: this.title })
 		},
 
 		/**
@@ -753,7 +769,7 @@ export default {
 		},
 		async copyLink() {
 			try {
-				await this.$copyText(this.shareLink)
+				await navigator.clipboard.writeText(this.shareLink)
 				showSuccess(t('files_sharing', 'Link copied'))
 				// focus and show the tooltip
 				this.$refs.copyButton.$el.focus()

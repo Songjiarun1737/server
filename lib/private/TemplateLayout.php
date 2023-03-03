@@ -79,7 +79,6 @@ class TemplateLayout extends \OC_Template {
 	 * @param string $appId application id
 	 */
 	public function __construct($renderAs, $appId = '') {
-
 		/** @var IConfig */
 		$this->config = \OC::$server->get(IConfig::class);
 
@@ -120,6 +119,10 @@ class TemplateLayout extends \OC_Template {
 				$this->assign('enabledThemes', $themesService->getEnabledThemes());
 			}
 
+			// set logo link target
+			$logoUrl = $this->config->getSystemValueString('logo_url', '');
+			$this->assign('logoUrl', $logoUrl);
+
 			// Add navigation entry
 			$this->assign('application', '');
 			$this->assign('appid', $appId);
@@ -127,7 +130,7 @@ class TemplateLayout extends \OC_Template {
 			$navigation = $this->navigationManager->getAll();
 			$this->assign('navigation', $navigation);
 			$settingsNavigation = $this->navigationManager->getAll('settings');
-			$this->assign('settingsnavigation', $settingsNavigation);
+			$this->initialState->provideInitialState('core', 'settingsNavEntries', $settingsNavigation);
 
 			foreach ($navigation as $entry) {
 				if ($entry['active']) {
@@ -190,11 +193,6 @@ class TemplateLayout extends \OC_Template {
 		} else {
 			parent::__construct('core', 'layout.base');
 		}
-
-		// set logo link target
-		$logoUrl = $this->config->getSystemValueString('logo_url', '');
-		$this->assign('logoUrl', $logoUrl);
-
 		// Send the language and the locale to our layouts
 		$lang = \OC::$server->getL10NFactory()->findLanguage();
 		$locale = \OC::$server->getL10NFactory()->findLocale($lang);
@@ -270,7 +268,7 @@ class TemplateLayout extends \OC_Template {
 
 		$this->assign('cssfiles', []);
 		$this->assign('printcssfiles', []);
-		$this->assign('versionHash', self::$versionHash);
+		$this->initialState->provideInitialState('core', 'versionHash', self::$versionHash);
 		foreach ($cssFiles as $info) {
 			$web = $info[1];
 			$file = $info[2];

@@ -34,6 +34,7 @@ namespace OC;
 
 use OC\DB\Connection;
 use OC\DB\OracleConnection;
+use OCP\DB\QueryBuilder\IQueryBuilder;
 use OCP\IAppConfig;
 use OCP\IConfig;
 
@@ -42,7 +43,6 @@ use OCP\IConfig;
  * database.
  */
 class AppConfig implements IAppConfig {
-
 	/** @var array[] */
 	protected $sensitiveValues = [
 		'circles' => [
@@ -285,7 +285,6 @@ class AppConfig implements IAppConfig {
 		 * > Large objects (LOBs) are not supported in comparison conditions.
 		 */
 		if (!($this->conn instanceof OracleConnection)) {
-
 			/*
 			 * Only update the value when it is not the same
 			 * Note that NULL requires some special handling. Since comparing
@@ -300,7 +299,7 @@ class AppConfig implements IAppConfig {
 				$sql->andWhere(
 					$sql->expr()->orX(
 						$sql->expr()->isNull('configvalue'),
-						$sql->expr()->neq('configvalue', $sql->createNamedParameter($value))
+						$sql->expr()->neq('configvalue', $sql->createNamedParameter($value), IQueryBuilder::PARAM_STR)
 					)
 				);
 			}

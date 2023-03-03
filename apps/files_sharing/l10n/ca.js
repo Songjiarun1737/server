@@ -205,7 +205,6 @@ OC.L10N.register(
     "Mail share ({label})" : "Compartició de correu ({label})",
     "Share link ({label})" : "Comparteix l'enllaç ({label})",
     "Share link" : "Enllaç de compartició",
-    "Copy public link to clipboard" : "Copia l'enllaç públic al porta-retalls",
     "Error, please enter proper password and/or expiration date" : "Error, introduïu la contrasenya i/o data de caducitat adequades",
     "Error while creating the share" : "S'ha produït un error en crear la compartició",
     "Search for share recipients" : "Cerca destinataris compartits",
@@ -216,6 +215,12 @@ OC.L10N.register(
     "Searching …" : "Cercant …",
     "No elements found." : "No s’han trobat elements.",
     "Search globally" : "Cerca globalment",
+    "Guest" : "Convidat",
+    "Group" : "Grup",
+    "Email" : "Correu",
+    "Circle" : "Cercle",
+    "Talk conversation" : "Conversa de Talk",
+    "Deck board" : "Tauler de Deck",
     "on {server}" : "a {server}",
     "Others with access" : "Altres amb accés",
     "No other users with access found" : "No s'ha trobat cap altre usuari amb accés",
@@ -262,9 +267,6 @@ OC.L10N.register(
     "One or more of your shares will expire tomorrow" : "Una o més de les teves compartició caducaran demà",
     "Copy to clipboard" : "Copia-ho al porta-papers",
     "Sorry, this link doesn’t seem to work anymore." : "Aquest enllaç sembla que no funciona.",
-    "Toggle grid view" : "Commuta la vista de la graella",
-    "Share label saved" : "S'ha desat l'etiqueta de compartició",
-    "Share password saved" : "S’ha desat la contrasenya de compartició",
-    "Share note saved" : "S'ha desat la nota de compartició"
+    "Toggle grid view" : "Commuta la vista de la graella"
 },
 "nplurals=2; plural=(n != 1);");

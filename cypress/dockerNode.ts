@@ -20,11 +20,13 @@
  *
  */
 /* eslint-disable no-console */
-/* eslint-disable node/no-unpublished-import */
+/* eslint-disable n/no-unpublished-import */
+/* eslint-disable n/no-extraneous-import */
 
 import Docker from 'dockerode'
 import waitOn from 'wait-on'
 import tar from 'tar'
+import { execSync } from 'child_process'
 
 export const docker = new Docker()
 
@@ -36,7 +38,7 @@ const SERVER_IMAGE = 'ghcr.io/nextcloud/continuous-integration-shallow-server'
  *
  * @param {string} branch the branch of your current work
  */
-export const startNextcloud = async function(branch: string = 'master'): Promise<any> {
+export const startNextcloud = async function(branch: string = getCurrentGitBranch()): Promise<any> {
 
 	try {
 		// Pulling images
@@ -48,6 +50,10 @@ export const startNextcloud = async function(branch: string = 'master'): Promise
 			// https://github.com/apocas/dockerode/issues/357
 			docker.modem.followProgress(stream, onFinished)
 
+			/**
+			 *
+			 * @param err
+			 */
 			function onFinished(err) {
 				if (!err) {
 					resolve(true)
@@ -85,7 +91,7 @@ export const startNextcloud = async function(branch: string = 'master'): Promise
 			},
 			Env: [
 				`BRANCH=${branch}`,
-			]
+			],
 		})
 		await container.start()
 
@@ -116,6 +122,7 @@ export const configureNextcloud = async function() {
 	await runExec(container, ['php', 'occ', 'config:system:set', 'default_locale', '--value', 'en_US'], true)
 	await runExec(container, ['php', 'occ', 'config:system:set', 'force_locale', '--value', 'en_US'], true)
 	await runExec(container, ['php', 'occ', 'config:system:set', 'enforce_theme', '--value', 'light'], true)
+	await runExec(container, ['php', 'occ', 'config:system:set', 'versions_retention_obligation', '--value', '0, 0'], true)
 
 	console.log('└─ Nextcloud is now ready to use 🎉')
 }
@@ -139,7 +146,7 @@ export const applyChangesToNextcloud = async function() {
 		'./ocs',
 	]
 
-	// Tar-streaming the above folder sinto the container
+	// Tar-streaming the above folders into the container
 	const serverTar = tar.c({ gzip: false }, folderPaths)
 	await container.putArchive(serverTar, {
 		path: htmlPath,
@@ -239,4 +246,8 @@ const runExec = async function(
 
 const sleep = function(milliseconds: number) {
 	return new Promise((resolve) => setTimeout(resolve, milliseconds))
+}
+
+const getCurrentGitBranch = function() {
+	return execSync('git rev-parse --abbrev-ref HEAD').toString().trim() || 'master'
 }

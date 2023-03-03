@@ -411,7 +411,7 @@ class View {
 	 * @param string $path
 	 * @return mixed
 	 */
-	public function filesize($path) {
+	public function filesize(string $path) {
 		return $this->basicOperation('filesize', $path);
 	}
 
@@ -821,14 +821,14 @@ class View {
 							} else {
 								$result = false;
 							}
-							// moving a file/folder within the same mount point
+						// moving a file/folder within the same mount point
 						} elseif ($storage1 === $storage2) {
 							if ($storage1) {
 								$result = $storage1->rename($internalPath1, $internalPath2);
 							} else {
 								$result = false;
 							}
-							// moving a file/folder between storages (from $storage1 to $storage2)
+						// moving a file/folder between storages (from $storage1 to $storage2)
 						} else {
 							$result = $storage2->moveFromStorage($storage1, $internalPath1, $internalPath2);
 						}
@@ -1047,7 +1047,6 @@ class View {
 	public function fromTmpFile($tmpFile, $path) {
 		$this->assertPathLength($path);
 		if (Filesystem::isValidPath($path)) {
-
 			// Get directory that the file is going into
 			$filePath = dirname($path);
 
@@ -1373,9 +1372,8 @@ class View {
 	 * get the filesystem info
 	 *
 	 * @param string $path
-	 * @param boolean|string $includeMountPoints true to add mountpoint sizes,
+	 * @param bool|string $includeMountPoints true to add mountpoint sizes,
 	 * 'ext' to add only ext storage mount point sizes. Defaults to true.
-	 * defaults to true
 	 * @return \OC\Files\FileInfo|false False if file does not exist
 	 */
 	public function getFileInfo($path, $includeMountPoints = true) {
@@ -1414,11 +1412,7 @@ class View {
 				if ($includeMountPoints and $data['mimetype'] === 'httpd/unix-directory') {
 					//add the sizes of other mount points to the folder
 					$extOnly = ($includeMountPoints === 'ext');
-					$mounts = Filesystem::getMountManager()->findIn($path);
-					$info->setSubMounts(array_filter($mounts, function (IMountPoint $mount) use ($extOnly) {
-						$subStorage = $mount->getStorage();
-						return !($extOnly && $subStorage instanceof \OCA\Files_Sharing\SharedStorage);
-					}));
+					$this->addSubMounts($info, $extOnly);
 				}
 			}
 
@@ -1428,6 +1422,17 @@ class View {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Extend a FileInfo that was previously requested with `$includeMountPoints = false` to include the sub mounts
+	 */
+	public function addSubMounts(FileInfo $info, $extOnly = false): void {
+		$mounts = Filesystem::getMountManager()->findIn($info->getPath());
+		$info->setSubMounts(array_filter($mounts, function (IMountPoint $mount) use ($extOnly) {
+			$subStorage = $mount->getStorage();
+			return !($extOnly && $subStorage instanceof \OCA\Files_Sharing\SharedStorage);
+		}));
 	}
 
 	/**
@@ -1803,7 +1808,6 @@ class View {
 	 * @return boolean
 	 */
 	private function targetIsNotShared(IStorage $targetStorage, string $targetInternalPath) {
-
 		// note: cannot use the view because the target is already locked
 		$fileId = (int)$targetStorage->getCache()->getId($targetInternalPath);
 		if ($fileId === -1) {

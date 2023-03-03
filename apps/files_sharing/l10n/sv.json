@@ -202,8 +202,10 @@
     "Shared via link by {initiator}" : "Delad via länk av {initiator}",
     "Mail share ({label})" : "E-postdelning ({labe})",
     "Share link ({label})" : "Dela länk ({label})",
+    "Share link ({index})" : "Dela länk ({index})",
     "Share link" : "Dela länk",
-    "Copy public link to clipboard" : "Kopiera publik länk till urklipp",
+    "Actions for \"{title}\"" : "Åtgärder för \"{title}\"",
+    "Copy public link of \"{title}\" to clipboard" : "Kopiera publika länken för \"{title}\" till urklipp",
     "Error, please enter proper password and/or expiration date" : "Fel, ange korrekt lösenord och/eller utgångsdatum",
     "Link share created" : "Delningslänk skapad",
     "Error while creating the share" : "Det gick inte att skapa delningen",
@@ -215,6 +217,12 @@
     "Searching …" : "Söker ...",
     "No elements found." : "Inga element hittades.",
     "Search globally" : "Sök globalt",
+    "Guest" : "Gäst",
+    "Group" : "Grupp",
+    "Email" : "E-post",
+    "Circle" : "Cirkel",
+    "Talk conversation" : "Talk-konversation",
+    "Deck board" : "Deck-plank",
     "on {server}" : "på {server}",
     "Others with access" : "Andra med åtkomst",
     "No other users with access found" : "Inga andra användare med åtkomst hittades",
@@ -265,8 +273,6 @@
     "Copy to clipboard" : "Kopiera till urklipp",
     "Sorry, this link doesn’t seem to work anymore." : "Tyvärr, denna länk verkar inte fungera längre.",
     "Toggle grid view" : "Växla rutnätsvy",
-    "Share label saved" : "Delningsetikett sparad",
-    "Share password saved" : "Lösenord för delning sparad",
-    "Share note saved" : "Notering för delning sparad"
+    "Error generating password from password_policy" : "Fel vid generering av lösenord från lösenordspolicy"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

@@ -204,8 +204,8 @@ OC.L10N.register(
     "Shared via link by {initiator}" : "{initiator} erabiltzaileak esteka bidez partekatua",
     "Mail share ({label})" : "Posta partekatzea ({label})",
     "Share link ({label})" : "Partekatu ({label}) eskeka",
+    "Share link ({index})" : "Partekatu ({index}) esteka",
     "Share link" : "Partekatu esteka",
-    "Copy public link to clipboard" : "Kopiatu esteka publikoa arbelera",
     "Error, please enter proper password and/or expiration date" : "Errorea, sartu dagokion pasahitza edo/eta iraungitze-data",
     "Error while creating the share" : "Errore bat gertatu da partekatzea sortzean",
     "Search for share recipients" : "Bilatu partekatze-hartzaileak",
@@ -216,6 +216,12 @@ OC.L10N.register(
     "Searching …" : "Bilatzen…",
     "No elements found." : "Ez da elementurik aurkitu.",
     "Search globally" : "Bilatu globalki",
+    "Guest" : "Gonbidatua",
+    "Group" : "Taldea",
+    "Email" : "Posta elektronikoa",
+    "Circle" : "Zirkulua",
+    "Talk conversation" : "Talk elkarrizketa",
+    "Deck board" : "Deck mahaia",
     "on {server}" : "{server} zerbitzarian",
     "Others with access" : "Sarbidea duten beste erabiltzaileak",
     "No other users with access found" : "Ez da sarbidea duen erabiltzailerik aurkitu",
@@ -262,9 +268,6 @@ OC.L10N.register(
     "One or more of your shares will expire tomorrow" : "Zure partekatzeetako bat gutxienez bihar iraungiko da",
     "Copy to clipboard" : "Kopiatu arbelera",
     "Sorry, this link doesn’t seem to work anymore." : "Barkatu, esteka hori jada ez dabilela dirudi.",
-    "Toggle grid view" : "Txandakatu sareta ikuspegia",
-    "Share label saved" : "Partekatu etiketa gorde da",
-    "Share password saved" : "Partekatu pasahitza gorde da",
-    "Share note saved" : "Partekatu oharra gorde da"
+    "Toggle grid view" : "Txandakatu sareta ikuspegia"
 },
 "nplurals=2; plural=(n != 1);");

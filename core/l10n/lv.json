@@ -106,6 +106,7 @@
     "Back" : "Atpakaļ",
     "Edit Profile" : "Rediģēt profilu",
     "Search" : "Meklēt",
+    "Settings menu" : "Iestatījumu izvēlne",
     "Settings" : "Iestatījumi",
     "Could not load your contacts" : "Nevarēja ielādēt visas jūsu kontaktpersonas",
     "Search contacts …" : "Meklēt kontaktpersonu",
@@ -148,6 +149,7 @@
     "Show list view" : "Rādīt saraksta skatu",
     "Show grid view" : "Rādīt režģa skatu",
     "Pending" : "Gaida",
+    "Home" : "Sākums",
     "Copy to {folder}" : "Kopēt uz {folder}",
     "Move to {folder}" : "Pārvietot uz {folder}",
     "Saving …" : "Saglabā ...",
@@ -222,7 +224,6 @@
     "Need help?" : "Vajadzīga palīdzība?",
     "See the documentation" : "Skatiet dokumentāciju",
     "This application requires JavaScript for correct operation. Please {linkstart}enable JavaScript{linkend} and reload the page." : "Šai lietotnei nepieciešams JavaScript. Lūdzu {linkstart}ieslēdziet JavasScript{linkend} un pārlādējiet lapu.",
-    "Contacts" : "Kontakti",
     "Confirm your password" : "Apstipriniet paroli",
     "App token" : "Lietotnes pilnvara",
     "Grant access" : "Piešķirt pieeju",
@@ -252,6 +253,6 @@
     "invisible" : "Neredzams",
     "File not found" : "Datne nav atrasta",
     "More" : "Vairāk",
-    "Settings menu" : "Iestatījumu izvēlne"
+    "Contacts" : "Kontakti"
 },"pluralForm" :"nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);"
 }

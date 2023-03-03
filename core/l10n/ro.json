@@ -110,6 +110,7 @@
     "Reset search" : "Resetează căutarea",
     "Load more results" : "Încarcă mai multe rezultate",
     "Search" : "Căutare",
+    "Settings menu" : "Meniul Setări",
     "Settings" : "Setări",
     "Could not load your contacts" : "Nu pot încarca contactele",
     "Search contacts …" : "Caută contacte ...",
@@ -152,6 +153,7 @@
     "Show list view" : "Afișează vizualizarea listă",
     "Show grid view" : "Afișează vizualizarea grilă",
     "Pending" : "În așteptare",
+    "Home" : "Acasă",
     "Copy to {folder}" : "Copiază la {folder}",
     "Move to {folder}" : "Mută la {folder}",
     "Saving …" : "Se salvează",
@@ -228,8 +230,6 @@
     "Need help?" : "Ai nevoie de ajutor?",
     "See the documentation" : "Vezi documentația",
     "This application requires JavaScript for correct operation. Please {linkstart}enable JavaScript{linkend} and reload the page." : "Această aplicație necesită JavaScript pentru a funcționa corect. {linkstart}Activează JavaScript{linkend} și reîncarcă pagina.",
-    "Contacts" : "Contacte",
-    "Contacts menu" : "Meniu contacte",
     "Confirm your password" : "Confirmă parola:",
     "Connect to your account" : "Conectează-te la contul tău",
     "App token" : "Token aplicație",
@@ -269,7 +269,8 @@
     "The document could not be found on the server. Maybe the share was deleted or has expired?" : "Documentul nu poate fi găsit pe server.Poate partajarea a fost ștearsă sau a expirat?",
     "More" : "Mai mult",
     "More apps menu" : "Meniu mai multe aplicații",
-    "Settings menu" : "Meniul Setări",
+    "Contacts" : "Contacte",
+    "Contacts menu" : "Meniu contacte",
     "Setup two-factor authentication" : "Setează autentificarea cu doi factori"
 },"pluralForm" :"nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));"
 }

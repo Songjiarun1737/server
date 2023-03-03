@@ -40,12 +40,12 @@ namespace OCA\Files\AppInfo;
 use OCA\Files\Controller\OpenLocalEditorController;
 
 // Legacy routes above
-/** @var $this \OC\Route\Router */
+/** @var \OC\Route\Router $this */
 $this->create('files_ajax_download', 'apps/files/ajax/download.php')
 	->actionInclude('files/ajax/download.php');
 
 /** @var Application $application */
-$application = \OC::$server->query(Application::class);
+$application = \OC::$server->get(Application::class);
 $application->registerRoutes(
 	$this,
 	[
@@ -62,11 +62,6 @@ $application->registerRoutes(
 				'root' => '',
 			],
 			[
-				'name' => 'ajax#getStorageStats',
-				'url' => '/ajax/getstoragestats',
-				'verb' => 'GET',
-			],
-			[
 				'name' => 'API#getThumbnail',
 				'url' => '/api/v1/thumbnail/{x}/{y}/{file}',
 				'verb' => 'GET',
@@ -81,6 +76,11 @@ $application->registerRoutes(
 			[
 				'name' => 'API#getRecentFiles',
 				'url' => '/api/v1/recent/',
+				'verb' => 'GET'
+			],
+			[
+				'name' => 'API#getStorageStats',
+				'url' => '/api/v1/stats',
 				'verb' => 'GET'
 			],
 			[

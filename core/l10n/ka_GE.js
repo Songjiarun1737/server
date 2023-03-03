@@ -125,6 +125,7 @@ OC.L10N.register(
     "({count} selected)" : "({count} არჩეული)",
     "Error loading file exists template" : "ფაილის ჩატვირთვისას წარმოიშვა შეცდომა",
     "Pending" : "მოლოდინში",
+    "Home" : "სახლი",
     "Copy to {folder}" : "კოპრება {folder}-ში",
     "Move to {folder}" : "გადატანა {folder}-ში",
     "Authentication required" : "საჭიროა აუტენტიფიკაცია",
@@ -192,7 +193,6 @@ OC.L10N.register(
     "Need help?" : "გესაჭიროებათ დახმარება?",
     "See the documentation" : "იხილეთ დოკუმენტაცია",
     "This application requires JavaScript for correct operation. Please {linkstart}enable JavaScript{linkend} and reload the page." : "ეს აპლიკაცია სწორი ოპერაციისთვის საჭიროებს JavaScript-ს. გთხოვთ {linkstart}ჩართოთ JavaScript-ი{linkend} და გადატვირთოთ გვერდი.",
-    "Contacts" : "კონტაქტები",
     "Confirm your password" : "დაადასტურეთ თქვენი პაროლი",
     "App token" : "აპლიკაციის ტოკენი",
     "Grant access" : "უფლებების მინიჭება",
@@ -222,6 +222,7 @@ OC.L10N.register(
     "restricted" : "აკრძალული",
     "invisible" : "უჩინარი",
     "File not found" : "ფაილი ვერ იქნა ნაპოვნი",
-    "More" : "მეტი"
+    "More" : "მეტი",
+    "Contacts" : "კონტაქტები"
 },
 "nplurals=2; plural=(n!=1);");

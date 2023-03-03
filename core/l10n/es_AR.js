@@ -86,6 +86,7 @@ OC.L10N.register(
     "Back" : "Atrás",
     "Reset search" : "Restablecer búsqueda",
     "Search" : "Buscar",
+    "Settings menu" : "Menú de configuración",
     "Settings" : "Configuraciones ",
     "Could not load your contacts" : "No se pudieron cargar tus contactos",
     "Search contacts …" : "Buscar contactos ...",
@@ -125,6 +126,7 @@ OC.L10N.register(
     "({count} selected)" : "({count} seleccionados)",
     "Error loading file exists template" : "Se presentó un error al cargar la plantilla de existe archivo ",
     "Pending" : "Pendiente",
+    "Home" : "Casa",
     "Authentication required" : "Se requiere autenticación",
     "This action requires you to confirm your password" : "Esta acción requiere que confirme su contraseña",
     "Confirm" : "Confirmar",
@@ -200,8 +202,6 @@ OC.L10N.register(
     "Skip to main content" : "Saltar al contenido principal",
     "Skip to navigation of app" : "Saltar a la navegación de la app",
     "Get your own free account" : "Obtenga su propia cuenta gratuita",
-    "Contacts" : "Contactos",
-    "Contacts menu" : "Menú de contactos",
     "Confirm your password" : "Confirme su contraseña",
     "Connect to your account" : "Conéctate a tu cuenta",
     "App token" : "Ficha de la aplicación",
@@ -233,6 +233,7 @@ OC.L10N.register(
     "File not found" : "Archivo no encontrado",
     "More" : "Más",
     "More apps menu" : "Más menú de apps",
-    "Settings menu" : "Menú de configuración"
+    "Contacts" : "Contactos",
+    "Contacts menu" : "Menú de contactos"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

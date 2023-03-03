@@ -158,12 +158,17 @@ class OC_App {
 	 * @param string $app
 	 * @throws Exception
 	 */
-	public static function loadApp(string $app) {
+	public static function loadApp(string $app): void {
+		if (isset(self::$loadedApps[$app])) {
+			return;
+		}
 		self::$loadedApps[$app] = true;
 		$appPath = self::getAppPath($app);
 		if ($appPath === false) {
 			return;
 		}
+		$eventLogger = \OC::$server->get(\OCP\Diagnostics\IEventLogger::class);
+		$eventLogger->start("bootstrap:load_app:$app", "Load $app");
 
 		// in case someone calls loadApp() directly
 		self::registerAutoloading($app, $appPath);
@@ -174,12 +179,12 @@ class OC_App {
 
 		$hasAppPhpFile = is_file($appPath . '/appinfo/app.php');
 
-		\OC::$server->getEventLogger()->start('bootstrap:load_app_' . $app, 'Load app: ' . $app);
 		if ($isBootable && $hasAppPhpFile) {
 			\OC::$server->getLogger()->error('/appinfo/app.php is not loaded when \OCP\AppFramework\Bootstrap\IBootstrap on the application class is used. Migrate everything from app.php to the Application class.', [
 				'app' => $app,
 			]);
 		} elseif ($hasAppPhpFile) {
+			$eventLogger->start("bootstrap:load_app:$app:app.php", "Load legacy app.php app $app");
 			\OC::$server->getLogger()->debug('/appinfo/app.php is deprecated, use \OCP\AppFramework\Bootstrap\IBootstrap on the application class instead.', [
 				'app' => $app,
 			]);
@@ -202,11 +207,12 @@ class OC_App {
 					]);
 				}
 			}
+			$eventLogger->end("bootstrap:load_app:$app:app.php");
 		}
-		\OC::$server->getEventLogger()->end('bootstrap:load_app_' . $app);
 
 		$coordinator->bootApp($app);
 
+		$eventLogger->start("bootstrap:load_app:$app:info", "Load info.xml for $app and register any services defined in it");
 		$info = self::getAppInfo($app);
 		if (!empty($info['activity']['filters'])) {
 			foreach ($info['activity']['filters'] as $filter) {
@@ -261,6 +267,10 @@ class OC_App {
 				}
 			}
 		}
+
+		$eventLogger->end("bootstrap:load_app:$app:info");
+
+		$eventLogger->end("bootstrap:load_app:$app");
 	}
 
 	/**
@@ -427,7 +437,6 @@ class OC_App {
 	 */
 	public function enable(string $appId,
 						   array $groups = []) {
-
 		// Check if app is already downloaded
 		/** @var Installer $installer */
 		$installer = \OC::$server->query(Installer::class);
@@ -476,16 +485,17 @@ class OC_App {
 	 * search for an app in all app-directories
 	 *
 	 * @param string $appId
+	 * @param bool $ignoreCache ignore cache and rebuild it
 	 * @return false|string
 	 */
-	public static function findAppInDirectories(string $appId) {
+	public static function findAppInDirectories(string $appId, bool $ignoreCache = false) {
 		$sanitizedAppId = self::cleanAppId($appId);
 		if ($sanitizedAppId !== $appId) {
 			return false;
 		}
 		static $app_dir = [];
 
-		if (isset($app_dir[$appId])) {
+		if (isset($app_dir[$appId]) && !$ignoreCache) {
 			return $app_dir[$appId];
 		}
 
@@ -526,15 +536,16 @@ class OC_App {
 	 * @psalm-taint-specialize
 	 *
 	 * @param string $appId
+	 * @param bool $refreshAppPath should be set to true only during install/upgrade
 	 * @return string|false
 	 * @deprecated 11.0.0 use \OC::$server->getAppManager()->getAppPath()
 	 */
-	public static function getAppPath(string $appId) {
+	public static function getAppPath(string $appId, bool $refreshAppPath = false) {
 		if ($appId === null || trim($appId) === '') {
 			return false;
 		}
 
-		if (($dir = self::findAppInDirectories($appId)) != false) {
+		if (($dir = self::findAppInDirectories($appId, $refreshAppPath)) != false) {
 			return $dir['path'] . '/' . $appId;
 		}
 		return false;
@@ -972,7 +983,9 @@ class OC_App {
 	 * @return bool
 	 */
 	public static function updateApp(string $appId): bool {
-		$appPath = self::getAppPath($appId);
+		// for apps distributed with core, we refresh app path in case the downloaded version
+		// have been installed in custom apps and not in the default path
+		$appPath = self::getAppPath($appId, true);
 		if ($appPath === false) {
 			return false;
 		}
